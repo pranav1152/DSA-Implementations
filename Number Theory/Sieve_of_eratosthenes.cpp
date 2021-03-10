@@ -1,0 +1,42 @@
+/* Author : 	Pranav Deshmukh
+            	PICT,Pune
+   Purpose: 	Understanding Sieve of Erathosthenes.
+   Date:   		16/09/2020
+   Stay Focused!
+*/
+
+#include<iostream>
+using namespace std;
+
+int checkPrime(int n) {
+	bool isPrime[n + 1];
+	for (int i = 0; i <= n; i++) {
+		isPrime[i] = true;
+	}
+	isPrime[0] = false;
+	isPrime[1] = false;
+
+	for (int i = 2; i * i <= n; i++) {
+		if (isPrime[i] == true) {
+			for (int j = i * i; j <= n; j += i) {
+				isPrime[j] = false;
+			}
+		}
+	}
+
+	int count = 0;
+	for (int i = 0; i <= n; i++) {
+		if (isPrime[i] == true) {
+			count++;
+		}
+	}
+	return count;
+}
+
+int main() {
+	int n;
+	cin >> n;
+	int count = 0;
+	cout << checkPrime(n) << endl;
+	return 0;
+}
